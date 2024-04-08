@@ -25,7 +25,7 @@
       <a href="{{ route('admin.technologies.show', $technology)}}" class="btn btn-info">Info</a>
 
 
-      <h2 class="mt-3">Edit Type</h2>
+      <h2 class="mt-3">Edit Technology</h2>
 
       {{-- form modifica tecnologia --}}
       <form action="{{ route('admin.technologies.update', $technology) }}" method="POST" class="row">

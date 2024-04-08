@@ -5,10 +5,10 @@
 @section('content')
     <section>
         <div class="container my-4">
-            {{-- pulsante inserisci progetto --}}
+            {{-- pulsante inserisci type --}}
             <a href="{{ route('admin.types.create') }}" role="button" class="btn btn-primary">Add Type</a>
 
-            {{-- lista progetti --}}
+            {{-- lista Types --}}
             <h1 class="my-4">Types list</h1>
             <table class="table table-bordered">
                 <thead>

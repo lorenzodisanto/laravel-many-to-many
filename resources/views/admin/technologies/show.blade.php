@@ -8,7 +8,7 @@
             {{-- pulsante ritorna alla lista --}}
             <a href="{{ route('admin.technologies.index')}}" class="btn btn-primary"> Return to list</a>
             
-            {{-- pulsante modifica progetto --}}
+            {{-- pulsante modifica tecnologia --}}
             <a href="{{ route('admin.technologies.edit', $technology)}}" class="btn btn-warning"> Edit Technology</a>
 
             <h2 class="mt-3">Technology info</h2>
