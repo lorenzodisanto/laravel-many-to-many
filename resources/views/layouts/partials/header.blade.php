@@ -22,6 +22,11 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ route('admin.types.index') }}">Types</a>
             </li>
+
+             {{--link per accedere alla tabella technologies--}}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('admin.technologies.index') }}">Technologies</a>
+            </li>
           @endauth
         </ul>
 
