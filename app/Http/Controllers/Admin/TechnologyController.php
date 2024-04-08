@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\StoreTechnologyRequest;
+use App\Http\Requests\Auth\UpdateTechnologyRequest;
 use App\Models\Technology;
 use Illuminate\Http\Request;
 
@@ -33,8 +35,11 @@ class TechnologyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTechnologyRequest $request)
     {
+        // validazione richiesta
+        $request->validated();
+
         //salvataggio tecnologia inserita nel form
         $data = $request->all();
         $technology = new Technology();
@@ -74,8 +79,11 @@ class TechnologyController extends Controller
      * @param  \App\Models\Technology  $technology
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Technology $technology)
+    public function update(UpdateTechnologyRequest $request, Technology $technology)
     {
+        // validazione richiesta
+        $request->validated();
+        
         //salvataggio tecnologia inserita nel form
         $data = $request->all();
         $technology->fill($data);
