@@ -76,6 +76,30 @@
         </div>
 
         <div class="col-12">
+          <label class="form-label pt-3">Technologies</label>
+              <div class="form-check @error('technologies') is-invalid @enderror p-0">
+                @foreach ($technologies as $technology)
+                  <input
+                   type="checkbox"
+                    id="technology-{{ $technology->id }}"
+                    value="{{ $technology->id }}"
+                    name="technologies[]"
+                    class="form-check-control"
+                    @if (in_array($technology->id, old('technologies', $project_technologies ?? []))) checked @endif
+                  >
+                  <label for="technology-{{ $technology->id }}" class="me-3">
+                    {{ $technology->label }}
+                  </label>
+                @endforeach
+              </div> 
+          @error('technologies')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+          @enderror
+        </div>   
+
+        <div class="col-12">
             <label for="description" class="form-label pt-3">Description</label>
             <textarea
                 class="form-control @error('description') is-invalid

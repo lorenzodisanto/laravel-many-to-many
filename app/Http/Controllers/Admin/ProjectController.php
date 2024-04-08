@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\StoreProjectRequest;
 use App\Http\Requests\Auth\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,8 @@ use Illuminate\Support\Str;
 
 // importo il validator
 use Illuminate\Support\Facades\Validator;
+
+use Illuminate\Support\Arr;
 
 class ProjectController extends Controller
 {
@@ -36,8 +39,12 @@ class ProjectController extends Controller
     {
         // prendo i types da passare alla vista
         $types = Type::all();
+
+        // prendo le technologies da passare alla vista
+        $technologies = Technology::all();
+
         // ritorno il form aggiungi nuovo progetto
-        return view('admin.projects.create', compact('types'));
+        return view('admin.projects.create', compact('types','technologies'));
     }
 
     /**
@@ -57,6 +64,10 @@ class ProjectController extends Controller
         $project->fill($data);
         $project->slug = Str::slug($project->title);
         $project->save();
+
+
+        // controllo se gli id ricevuti esistono nella tabella technologies e li inseriscio nella tabella ponte
+        if(Arr::exists($data, "technologies")) $project->technologies()->attach($data["technologies"]);
 
         // ritorno al dettaglio del progetto dopo il salvataggio
         return redirect()->route('admin.projects.show', $project);
@@ -82,8 +93,15 @@ class ProjectController extends Controller
     {
         // prendo i types da passare alla vista
         $types = Type::all();
+
+        // prendo le technologies da passare alla vista
+        $technologies = Technology::all();
+
+        // prendo i progetti associati alle tecnologie
+        $project_technologies = $project->technologies->pluck('id')->toArray();
+
         //ritorno la vista del form di modifica
-        return view('admin.projects.edit', compact('project','types'));
+        return view('admin.projects.edit', compact('project','types','technologies','project_technologies'));
 
     }
 
@@ -104,6 +122,12 @@ class ProjectController extends Controller
         $project->fill($data);
         $project->slug = Str::slug($project->title);
         $project->save();
+
+
+        if(Arr::exists($data, "technologies"))
+        $project->technologies()->sync($data["technologies"]);
+        else
+        $project->technologies()->detach();
 
         // dopo il salvataggio redirect alla rotta show
         return redirect()->route('admin.projects.show', $project);
