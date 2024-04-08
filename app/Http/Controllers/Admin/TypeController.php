@@ -60,8 +60,11 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
+        // recupero i progetti collegati al type 
+        $related_projects = $type->projects()->paginate(10);
+
         //metodo show per dettaglio singolo type
-        return view('admin.types.show', compact('type'));
+        return view('admin.types.show', compact('type','related_projects'));
     }
 
     /**
