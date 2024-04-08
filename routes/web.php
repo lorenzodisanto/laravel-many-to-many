@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\TechnologyController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Guest\DashboardController as GuestDashboardController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
@@ -35,6 +36,9 @@ Route::middleware('auth')
 
     // rotte protette del type controller
     Route::resource('types', TypeController::class);
+
+    // rotte protette del technology controller
+    Route::resource('technologies',TechnologyController::class);
     
   });
 
