@@ -27,7 +27,8 @@ class UpdateProjectRequest extends FormRequest
             'title'=> 'required|string|max:150',
             'link'=> 'required|url',
             'description'=> 'required|string',
-            'type_id'=>'required|exists:types,id'
+            'type_id'=>'required|exists:types,id',
+            'technologies' =>'required|exists:technologies,id'
 
         ];
     }
@@ -47,6 +48,9 @@ class UpdateProjectRequest extends FormRequest
 
             'type_id.exists'=> 'Il Type non esiste',
             'type_id.required'=> 'Campo obbligatorio',
+
+            'technologies.required'=>'Campo obbligatorio',
+            'technologies.exists'=>'Campo obbligatorio',
 
         ];
     }

@@ -27,7 +27,8 @@ class StoreProjectRequest extends FormRequest
             'title'=> 'required|string|max:150',
             'link'=> 'required|url',
             'description'=> 'required|string',
-            'type_id'=>'required|exists:types,id'
+            'type_id'=>'required|exists:types,id',
+            'technologies' =>'required|exists:technologies,id'
         ];
     }
 
@@ -46,6 +47,9 @@ class StoreProjectRequest extends FormRequest
 
             'type_id.required'=> 'Campo obbligatorio',
             'type_id.exists'=> 'Il Type non esiste',
+
+            'technologies.required'=>'Campo obbligatorio',
+            'technologies.exists'=>'Campo obbligatorio',
         ];
     }
 }
