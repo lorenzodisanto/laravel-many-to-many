@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Type list')
+@section('title', 'Types list')
 
 @section('content')
     <section>
@@ -9,7 +9,7 @@
             <a href="{{ route('admin.types.create') }}" role="button" class="btn btn-primary">Add Type</a>
 
             {{-- lista progetti --}}
-            <h1 class="my-4">Type list</h1>
+            <h1 class="my-4">Types list</h1>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -57,7 +57,7 @@
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                       
-                      {{-- form con pulsante elimina fumetto --}}
+                      {{-- form con pulsante elimina tipo --}}
                       <form action="{{ route('admin.types.destroy', $type) }}" method="POST" class="d-inline">
                         @csrf
                         {{-- metodo --}}

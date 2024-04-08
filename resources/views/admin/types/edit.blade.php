@@ -27,7 +27,7 @@
 
       <h2 class="mt-3">Edit Type</h2>
 
-      {{-- form aggiungi nuovo type --}}
+      {{-- form modifica type --}}
       <form action="{{ route('admin.types.update', $type) }}" method="POST" class="row">
         @csrf
 

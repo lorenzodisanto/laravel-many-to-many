@@ -28,7 +28,7 @@ class TypeController extends Controller
     public function create()
     {
         $types = new Type;
-        // ritorno il form aggiungi nuovo progetto
+        // ritorno il form aggiungi nuovo tipe
         return view('admin.types.create', compact('types'));
     }
 
@@ -49,7 +49,7 @@ class TypeController extends Controller
         $type->fill($data);
         $type->save();
 
-        // ritorno al dettaglio del progetto dopo il salvataggio
+        // ritorno al dettaglio del tipe dopo il salvataggio
         return redirect()->route('admin.types.show', $type);
     }
 
@@ -92,7 +92,7 @@ class TypeController extends Controller
         $type->fill($data);
         $type->save();
 
-        // ritorno al dettaglio del progetto dopo il salvataggio
+        // ritorno al dettaglio del type dopo il salvataggio
         return redirect()->route('admin.types.show', $type);
     }
 
