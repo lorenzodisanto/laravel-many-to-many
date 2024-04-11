@@ -35,7 +35,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="3"><i>NO Types</i></td>
+                            <td colspan="4"><i>NO Types</i></td>
                         </tr>
                     @endforelse
     
