@@ -6,12 +6,15 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\Auth\StoreProjectRequest;
 use App\Http\Requests\Auth\UpdateProjectRequest;
+use App\Mail\CreatedProjectMail;
 use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
+use Auth;
 use Illuminate\Http\Request;
 
 // importo facades string
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -75,6 +78,9 @@ class ProjectController extends Controller
 
         // controllo se gli id ricevuti esistono nella tabella technologies e li inseriscio nella tabella ponte
         if(Arr::exists($data, "technologies")) $project->technologies()->attach($data["technologies"]);
+
+        // invio mail creazione nuovo progetto
+        Mail::to('users@mail.com')->send(new CreatedProjectMail($project, Auth::user()));
 
         // ritorno al dettaglio del progetto dopo il salvataggio
         return redirect()->route('admin.projects.show', $project);
