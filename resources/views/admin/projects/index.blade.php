@@ -9,7 +9,7 @@
             <a href="{{ route('admin.projects.create') }}" role="button" class="btn btn-primary">Add Project</a>
 
             {{-- lista progetti --}}
-            <h1 class="my-4">Project list</h1>
+            <h1 class="my-4">Projects list</h1>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -35,7 +35,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="3"><i>NO Project</i></td>
+                            <td colspan="4"><i>NO Project</i></td>
                         </tr>
                     @endforelse
     
