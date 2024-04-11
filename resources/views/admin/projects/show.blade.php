@@ -19,7 +19,7 @@
                 <div class="card-header">
                     <h3>{{ $project->title }} #{{ $project->id }}</h3>
                 </div>
-                <div class="card-body">
+                <div class="card-body">                    
                     <code class="fs-4">{{ $project->slug }}</code>
                     <p class="my-2"><span class="badge fs-5" style="background-color: {{ $project->type->color }}">{{ $project->type->label }}</span></p>
                     @foreach ($project->technologies as $technology)
@@ -30,7 +30,12 @@
                     @endforeach
                     <p class="fs-5">{{ $project->description }}</p>
                     <a href="{{ $project->link }}">link</a>
-                </div>              
+                </div>
+
+                {{-- immagine --}}
+                @if (!@empty($project->image))
+                <img src="{{ asset('storage/'. $project->image) }}" class="img-fluid">    
+                @endif          
             </div>          
         </div>
     </section>

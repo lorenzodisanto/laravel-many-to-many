@@ -24,7 +24,7 @@
       <h2 class="mt-3">Add Project</h2>
         
       {{-- form aggiungi nuovo progetto --}}
-      <form action="{{ route('admin.projects.store') }}" method="POST" class="row">
+      <form action="{{ route('admin.projects.store') }}" method="POST" class="row" enctype="multipart/form-data">
         @csrf
 
         <div class="col-9">
@@ -59,7 +59,7 @@
             @enderror
         </div>
 
-        <div class="col-12">
+        <div class="col-6">
             <label for="link" class="form-label pt-3">Link</label>
             <input type="text" 
               class="form-control @error('link') is-invalid
@@ -73,6 +73,21 @@
                 {{ $message }}
               </div>
             @enderror
+        </div>
+
+        <div class="col-6">
+          <label for="image" class="form-label pt-3">Image</label>
+          <input type="file"
+            class="form-control @error('image') is-invalid
+            @enderror" 
+            id="image" 
+            name="image"
+            >
+            @error('image')
+            <div class="invalid-feedback">
+              {{ $message }}
+            </div>
+          @enderror
         </div>
 
         <div class="col-12">

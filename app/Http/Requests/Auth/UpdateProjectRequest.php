@@ -28,7 +28,8 @@ class UpdateProjectRequest extends FormRequest
             'link'=> 'required|url',
             'description'=> 'required|string',
             'type_id'=>'required|exists:types,id',
-            'technologies' =>'required|exists:technologies,id'
+            'technologies' =>'required|exists:technologies,id',
+            'image' =>'nullable|image'
 
         ];
     }
@@ -51,6 +52,8 @@ class UpdateProjectRequest extends FormRequest
 
             'technologies.required'=>'Campo obbligatorio',
             'technologies.exists'=>'Campo obbligatorio',
+
+            'image.image'=>'File non valido',
 
         ];
     }

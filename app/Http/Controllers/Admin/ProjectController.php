@@ -12,6 +12,7 @@ use App\Models\Type;
 use Illuminate\Http\Request;
 
 // importo facades string
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 // importo il validator
@@ -60,9 +61,15 @@ class ProjectController extends Controller
 
         //salvataggio progetto inserito nel form
         $data = $request->all();
+        
         $project = new Project();
         $project->fill($data);
         $project->slug = Str::slug($project->title);
+
+        // gestione dell'immagine
+        $image_cover = Storage::put('upload/posts', $data['image']);
+        $project->image = $image_cover;
+        
         $project->save();
 
 
@@ -121,8 +128,21 @@ class ProjectController extends Controller
         $data = $request->all();
         $project->fill($data);
         $project->slug = Str::slug($project->title);
-        $project->save();
 
+
+        // se arriva nuova immagine
+        if(Arr::exists($data, "image")){
+            // elimino vecchia immagine se esiste già
+            if(!empty($project->image)){
+                Storage::delete($project->image);
+            }
+        }
+        // aggiungo nuova dell'immagine
+        $image_cover = Storage::put('upload/posts', $data['image']);
+        $project->image = $image_cover;
+
+        // salvo
+        $project->save();
 
         if(Arr::exists($data, "technologies"))
         $project->technologies()->sync($data["technologies"]);
